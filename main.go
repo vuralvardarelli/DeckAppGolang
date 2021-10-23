@@ -3,24 +3,29 @@ package main
 import "fmt"
 
 func main() {
-	//var card string
-	//var card string = "Test"
-	//card := newCard()
+	cards := newDeck()
+	cards.print()
 
-	//fmt.Println(card)
+	fmt.Println("------")
+	hand, remainingCards := deal(cards, 5)
+	hand.print()
 
-	cards := []string{"new card 1", newCard()}
+	fmt.Println("------")
+	remainingCards.print()
 
-	cards = append(cards, "new card 3")
+	fmt.Println("------")
+	fmt.Println(remainingCards.toString())
 
-	for i, card := range cards { //for-foreach like
-		fmt.Println(i, card)
-	}
+	fmt.Println("------")
+	remainingCards.saveToFile("Testfile.txt")
+	fmt.Println("File saved.")
 
-	//fmt.Println(cards)
+	fmt.Println("------")
+	cards2 := newDeckFromFile("Testfile.txt")
+	fmt.Println("File read.")
+	cards2.print()
 
-}
-
-func newCard() string {
-	return "new card 2"
+	fmt.Println("------")
+	cards2.shuffle()
+	cards2.print()
 }
